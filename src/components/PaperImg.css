@@ -1,0 +1,203 @@
+/* PaperImg.css
+ * Premium floating paper/polaroid photo animation.
+ * Pure CSS — GPU-friendly transform + opacity only.
+ */
+
+.paper-img-stage {
+  width: 100%;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.paper-img-float {
+  position: relative;
+  width: clamp(220px, 28vw, 340px);
+  aspect-ratio: 4 / 5;
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: paper-float 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.paper-img-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  padding: 12px 12px 44px;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.04),
+    0 10px 20px -8px rgba(0, 0, 0, 0.18),
+    0 30px 60px -20px rgba(0, 0, 0, 0.28);
+  transform-origin: 50% 60%;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  animation: paper-reveal 9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.paper-img-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.paper-img-gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0) 65%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+  animation: paper-gloss 9s ease-in-out infinite;
+}
+
+.paper-img-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -6%;
+  width: 78%;
+  height: 26px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.12) 45%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  filter: blur(10px);
+  z-index: -1;
+  animation: paper-shadow 9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* Keyframes
+ * 0%    : off-position, tilted, small, translucent
+ * 18%   : glides toward center
+ * 32%   : arrives at center, unfolds
+ * 55%   : held (2s hold roughly 32%–55% of 9s)
+ * 78%   : gently returns
+ * 100%  : back to initial pose
+ */
+
+@keyframes paper-float {
+  0% {
+    transform: translate3d(-6%, 4%, 0) rotate(-6deg);
+  }
+  32% {
+    transform: translate3d(0, -1%, 0) rotate(0.5deg);
+  }
+  45% {
+    transform: translate3d(0.5%, -2%, 0) rotate(-0.3deg);
+  }
+  55% {
+    transform: translate3d(0, -1%, 0) rotate(0.4deg);
+  }
+  78% {
+    transform: translate3d(-3%, 2%, 0) rotate(-3deg);
+  }
+  100% {
+    transform: translate3d(-6%, 4%, 0) rotate(-6deg);
+  }
+}
+
+@keyframes paper-reveal {
+  0% {
+    transform: scale(0.82) rotateX(18deg) rotateY(-10deg) rotateZ(-2deg);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  18% {
+    opacity: 0.85;
+    filter: blur(1.5px);
+  }
+  32% {
+    transform: scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  45% {
+    transform: scale(1.015) rotateX(-1.2deg) rotateY(1.5deg) rotateZ(0.2deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  55% {
+    transform: scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  78% {
+    transform: scale(0.92) rotateX(10deg) rotateY(-6deg) rotateZ(-1deg);
+    opacity: 0.9;
+    filter: blur(1px);
+  }
+  100% {
+    transform: scale(0.82) rotateX(18deg) rotateY(-10deg) rotateZ(-2deg);
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
+@keyframes paper-gloss {
+  0%, 100% { opacity: 0.25; transform: translateX(-8%); }
+  32%      { opacity: 0.75; transform: translateX(0%); }
+  55%      { opacity: 0.6;  transform: translateX(4%); }
+  78%      { opacity: 0.35; transform: translateX(-4%); }
+}
+
+@keyframes paper-shadow {
+  0%, 100% {
+    opacity: 0.25;
+    transform: translateX(-50%) scale(0.7);
+    filter: blur(14px);
+  }
+  32%, 55% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+    filter: blur(10px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .paper-img-stage {
+    min-height: 420px;
+    padding: 1rem;
+  }
+  .paper-img-float {
+    width: clamp(200px, 60vw, 280px);
+  }
+  .paper-img-card {
+    border-radius: 14px;
+    padding: 10px 10px 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paper-img-float,
+  .paper-img-card,
+  .paper-img-gloss,
+  .paper-img-shadow {
+    animation: none;
+  }
+  .paper-img-card {
+    transform: none;
+    opacity: 1;
+  }
+}
