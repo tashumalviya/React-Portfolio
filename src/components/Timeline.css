@@ -1,0 +1,118 @@
+.timeline-section {
+  background: var(--white);
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 0%;
+  background: linear-gradient(180deg, var(--lavender), var(--blue));
+  transform: translateX(-50%);
+  transition: height 0.1s linear;
+  border-radius: 2px;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 calc(50% + 40px) 3rem 0;
+  position: relative;
+  opacity: 0;
+}
+
+.timeline-item.tl-right {
+  justify-content: flex-start;
+  padding: 0 0 3rem calc(50% + 40px);
+}
+
+.timeline-item.show {
+  opacity: 1;
+}
+
+.tl-dot {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--lavender);
+  transform: translate(-50%, 4px);
+  z-index: 1;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.timeline-item:hover .tl-dot {
+  border-color: var(--blue);
+  box-shadow: 0 0 16px rgba(79,140,255,0.5);
+}
+
+.tl-card {
+  background: var(--cream);
+  padding: 1.5rem 1.8rem;
+  border-radius: var(--r);
+  max-width: 380px;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+}
+
+.tl-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.tl-date {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+.tl-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0.4rem 0 0.2rem;
+}
+
+.tl-card h5 {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgb(190, 190, 198);
+  margin: 0.4rem 0 0.2rem;
+}
+
+.tl-company {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--blue);
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.tl-company-b{
+  font-size: 0.9rem;
+  font-weight: 590;
+  color: rgb(96, 39, 202);
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.tl-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-light);
+}

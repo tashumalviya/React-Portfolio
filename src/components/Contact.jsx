@@ -1,5 +1,6 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import "./Contact.css"
 
 export default function Contact() {
   const [sending, setSending] = useState(false);

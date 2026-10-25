@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Navbar.css"
 
 const LINKS = [
   { href: "#about", label: "About", section: "about" },

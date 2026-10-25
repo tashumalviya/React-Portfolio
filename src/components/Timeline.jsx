@@ -1,3 +1,4 @@
+import "./Timeline.css"
 import sirtLogo from "../assets/sirt-logo.gif";
 import schoolLogo from "../assets/school-logo.png";
 import internpeLogo from "../assets/internpe-logo.png"

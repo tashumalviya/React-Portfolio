@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import "./Skills.css"
 
 const CATEGORIES = [
   { name: "Frontend", sub: "Interfaces & Experience", icon: "ri-layout-4-line",

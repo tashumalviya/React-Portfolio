@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
+import './Hero.css'
 
 const KeyboardScene = lazy(() => import("./KeyboardScene.jsx"));
 
@@ -16,13 +17,13 @@ export default function Hero({ revealed }) {
 
     const typed = new Typed(typedRef.current, {
       strings: [
-        "Creative Developer & Designer",
+        "Creative Developer and Designer",
       ],
       typeSpeed: 80,
       backSpeed: 50,
       backDelay: 1500,
       loop: true,
-      showCursor: true,
+      // showCursor: true,
       cursorChar: "|",
     });
 

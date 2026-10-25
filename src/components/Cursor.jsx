@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+// import "./Cursor.css"
 
 const lerp = (a, b, t) => a + (b - a) * t;
 

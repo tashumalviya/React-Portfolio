@@ -1,3 +1,4 @@
+import "./Projects.css"
 import portfolioImg from "../assets/MacOS-portfolio.png";
 import snapdishImg from "../assets/snapdish.png";
 import teamSyncImg from "../assets/teamsync.png";
