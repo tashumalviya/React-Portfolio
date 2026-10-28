@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-// import "./Cursor.css"
 
 const lerp = (a, b, t) => a + (b - a) * t;
 
@@ -22,7 +21,7 @@ export default function Cursor() {
     };
     animate();
 
-    const interactables = "a, button, [data-magnetic], input, textarea, .project-card, .tl-card, .skill-glass, .social-btn";
+    const interactables = "a, button, [data-magnetic], input, textarea, .project-card, .tl-card, .exp-card, .skill-glass, .social-btn";
     const onOver = (e) => { if (e.target.closest(interactables)) { cursor.classList.add("expanded"); trail.classList.add("expanded"); } };
     const onOut = (e) => { if (e.target.closest(interactables)) { cursor.classList.remove("expanded"); trail.classList.remove("expanded"); } };
     const onDown = () => (cursor.style.transform = "translate(-50%, -50%) scale(0.8)");

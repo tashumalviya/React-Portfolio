@@ -3,7 +3,6 @@ import { useRef, useEffect } from "react"; // ✅ useEffect import kiya
 import Typed from "typed.js";
 import resumeUrl from "../assets/TASHU MALVIYA.pdf?url";
 import PaperReveal from "./PaperImg";
-import "./About.css"
 
 const container = {
   hidden: {},

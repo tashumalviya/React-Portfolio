@@ -1,66 +1,65 @@
-import React from 'react'
-import './Footer.css'
-import { Link } from 'react-scroll'
-import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaArrowUp, FaMapMarkerAlt, FaPhone } from 'react-icons/fa'
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope, FaArrowUp } from "react-icons/fa";
 
-const Footer = () => {
+const EMAIL = "malviyatashu@gmail.com";
+
+const EXPLORE = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Journey", href: "#experience" },
+  { label: "Work", href: "#projects" },
+  { label: "Education", href: "#education" },
+];
+
+const SOCIALS = [
+  { label: "GitHub", href: "https://github.com/tashumalviya", icon: <FaGithub /> },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/tashu-malviya/", icon: <FaLinkedin /> },
+  { label: "Instagram", href: "https://www.instagram.com/its_tashu_21/?hl=en", icon: <FaInstagram /> },
+  { label: "Email", href: `mailto:${EMAIL}`, icon: <FaEnvelope /> },
+];
+
+export default function Footer() {
   return (
-    <footer>
-      <div className="footer-glow"></div>
+    <footer className="ft">
+      <div className="ft-line"></div>
+      <div className="ft-big" aria-hidden="true">Tashu Malviya</div>
 
-      <div className="footer-inner">
-
-        <div className="footer-columns">
-
-          {/* Left - Get In Touch */}
-          <div className="footer-contact">
-            <h3>Get In Touch</h3>
-            <p>Have a project in mind or just want to say hello? Feel free to reach out!</p>
-            <ul className="contact-list">
-              <li><FaMapMarkerAlt /><a href="https://www.google.com/maps/search/Maharajganj,+Uttar+Pradesh,+India" target="_blank" rel="noreferrer">India</a></li>
-              <li><FaPhone /><a href="tel:+919569424472">+91 9569424472</a></li>
-              <li><FaEnvelope /><a href="https://mail.google.com/mail/?view=cm&to=vijaylaxmi88582@gmail.com&su=Hello%20Vijaylaxmi%20-%20Portfolio%20Inquiry&body=Hi%20Vijaylaxmi%2C%0A%0AI%20visited%20your%20portfolio%20and%20would%20love%20to%20connect%20with%20you.%0A%0A" target="_blank" rel="noreferrer">vijaylaxmi88582@gmail.com</a></li>
-            </ul>
-            <div className="footer-socials">
-              <a href="https://github.com/vijaylaxmi88582-art" target="_blank" rel="noreferrer" title="GitHub"><FaGithub /></a>
-              <a href="https://linkedin.com/vijaylaxmi-prajapti-196602335" target="_blank" rel="noreferrer" title="LinkedIn"><FaLinkedin /></a>
-              <a href="https://instagram.com/vijaylaxmi_prajapti" target="_blank" rel="noreferrer" title="Instagram"><FaInstagram /></a>
-              <a href="https://mail.google.com/mail/?view=cm&to=vijaylaxmi88582@gmail.com&su=Hello%20Vijaylaxmi%20-%20Portfolio%20Inquiry&body=Hi%20Vijaylaxmi%2C%0A%0AI%20visited%20your%20portfolio%20and%20would%20love%20to%20connect%20with%20you.%0A%0A" target="_blank" rel="noreferrer" title="Email"><FaEnvelope /></a>
-            </div>
+      <div className="ft-inner">
+        <div className="ft-left">
+          <a href="#home" className="ft-logo">TM</a>
+          <p className="ft-tag">Turning ideas into reality, one line of code at a time.</p>
+          <div className="ft-socials">
+            {SOCIALS.map((s) => (
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" title={s.label} aria-label={s.label}>{s.icon}</a>
+            ))}
           </div>
+        </div>
 
-          {/* Right - Brand + Links */}
-          <div className="footer-right">
-            <div className="footer-brand">
-              <h2>PORTFOLIO</h2>
-              <p>Turning ideas into reality — one line of code at a time.</p>
-            </div>
-
-            <ul className="footer-nav">
-              <Link to="home" smooth={true} duration={500}><li>Home</li></Link>
-              <Link to="about" smooth={true} duration={500}><li>About</li></Link>
-              <Link to="projects" smooth={true} duration={500}><li>Projects</li></Link>
-              <Link to="skills" smooth={true} duration={500}><li>Skills</li></Link>
-              <Link to="education" smooth={true} duration={500}><li>Education</li></Link>
-              <Link to="contact" smooth={true} duration={500}><li>Contact</li></Link>
-            </ul>
+        <div className="ft-cols">
+          <div className="ft-col">
+            <h4>Explore</h4>
+            {EXPLORE.map((l) => (<a key={l.label} href={l.href}>{l.label}</a>))}
           </div>
-
+          <div className="ft-col">
+            <h4>Connect</h4>
+            {SOCIALS.slice(0, 3).map((s) => (
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer">{s.label}</a>
+            ))}
+            <a href="#contact">Contact Form</a>
+          </div>
+          <div className="ft-col">
+            <h4>Contact</h4>
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            <span>Bhopal, India</span>
+            <span>Open for Freelance</span>
+          </div>
         </div>
+      </div>
 
-        {/* Bottom */}
-        <div className="footer-divider">
-          <span></span><span className="dot"></span><span></span>
-        </div>
-
-        <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} <span>Portfolio</span>. All rights reserved.</p>
-    
-        </div>
-
+      <div className="ft-bottom">
+        <p>© {new Date().getFullYear()} <span>Tashu Malviya</span>. All rights reserved.</p>
+        <a href="#home" className="ft-top" aria-label="Back to top"><FaArrowUp /></a>
       </div>
     </footer>
-  )
+  );
 }
-
-export default Footer

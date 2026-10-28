@@ -1,4 +1,3 @@
-import "./Projects.css"
 import portfolioImg from "../assets/MacOS-portfolio.png";
 import snapdishImg from "../assets/snapdish.png";
 import teamSyncImg from "../assets/teamsync.png";
@@ -51,34 +50,28 @@ export default function Projects() {
           <h2 className="section-title">Featured <em>Projects</em></h2>
           <p className="section-sub">A selection of recent work I'm proud of</p>
         </div>
-        <div className="projects-grid">
+        <div className="projects-stack">
           {PROJECTS.map((p, i) => (
-            <div key={p.title} className={`project-card animate-up ${p.wide ? "project-card--wide" : ""}`} style={{ "--delay": `${(i + 1) * 0.1}s` }} data-tilt>
+            <div key={p.title} className="project-card project-card--stack" style={{ "--i": i }} data-tilt>
               <div className="project-img" style={{ "--bg": p.bg }}>
                 <div className="project-img-inner">
-                  <img src={p.image} alt={p.title} className="project-image" />
+                  {p.image
+                    ? <img src={p.image} alt={p.title} className="project-image" />
+                    : <span className="project-icon">{p.icon}</span>}
                 </div>
-                <div className="project-overlay">
-                  <a
-                    href={p.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link"
-                  >
-                    View Live ↗
-                  </a>
-
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-github"
-                  >
-                    GitHub ↗
-                  </a>
-                </div>
+                {(p.live || p.github) && (
+                  <div className="project-overlay">
+                    {p.live && (
+                      <a href={p.live.trim()} target="_blank" rel="noopener noreferrer" className="project-link">View Live ↗</a>
+                    )}
+                    {p.github && (
+                      <a href={p.github} target="_blank" rel="noopener noreferrer" className="project-github">GitHub ↗</a>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="project-info">
+                <span className="project-num">{String(i + 1).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")}</span>
                 <div className="project-tags">{p.tags.map((t) => <span key={t}>{t}</span>)}</div>
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>

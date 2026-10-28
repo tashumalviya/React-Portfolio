@@ -8,7 +8,7 @@ import Skills from "./components/Skills.jsx";
 import Projects from "./components/Projects.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
-import { TimelineSection, EXPERIENCE_ITEMS, EDUCATION_ITEMS } from "./components/Timeline.jsx";
+import { TimelineSection, ExperienceSection, EXPERIENCE_ITEMS, EDUCATION_ITEMS } from "./components/Timeline.jsx";
 import { usePortfolioEffects } from "./hooks/usePortfolioEffects.js";
 
 export default function App() {
@@ -31,9 +31,8 @@ export default function App() {
       <Hero revealed={revealed} />
       <About />
       <Skills />
-      <TimelineSection
+      <ExperienceSection
         id="experience"
-        lineId="experienceLine"
         tag="My Journey"
         title="Experience"
         titleEm="Summary"

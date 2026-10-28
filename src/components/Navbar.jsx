@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import "./Navbar.css"
+import { useEffect, useRef, useState } from "react";
 
 const LINKS = [
   { href: "#about", label: "About", section: "about" },
@@ -12,13 +11,29 @@ const LINKS = [
 
 export default function Navbar({ visible }) {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [active, setActive] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const lastY = useRef(0);
+  const menuOpenRef = useRef(false);
+
+  useEffect(() => {
+    menuOpenRef.current = menuOpen;
+  }, [menuOpen]);
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 30);
-      const scrollY = window.scrollY + 100;
+      const y = window.scrollY;
+      setScrolled(y > 30);
+
+      // hide on scroll down, show on scroll up
+      const delta = y - lastY.current;
+      if (y < 80 || menuOpenRef.current) setHidden(false);
+      else if (delta > 2) setHidden(true);
+      else if (delta < -2) setHidden(false);
+      lastY.current = y;
+
+      const scrollY = y + 100;
       document.querySelectorAll("section[id]").forEach((sec) => {
         if (scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight) setActive(sec.id);
       });
@@ -31,7 +46,7 @@ export default function Navbar({ visible }) {
 
   return (
     <>
-      <nav className={`navbar ${visible ? "visible" : ""} ${scrolled ? "scrolled" : ""}`} id="navbar">
+      <nav className={`navbar ${visible ? "visible" : ""} ${scrolled ? "scrolled" : ""} ${hidden ? "nav-hidden" : ""}`} id="navbar">
         <a href="#home" className="nav-logo">TASHU MALVIYA</a>
         <div className="nav-links">
           {LINKS.map((l) => (

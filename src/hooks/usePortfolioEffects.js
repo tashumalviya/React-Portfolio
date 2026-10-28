@@ -68,6 +68,33 @@ export function usePortfolioEffects(ready) {
       cleanups.push(() => { window.removeEventListener("scroll", onScroll); tlObserver.disconnect(); });
     });
 
+       // Experience: cards drift horizontally with scroll (no pin, smooth scrub) — desktop only
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 769px)", () => {
+      const sec = document.querySelector(".exp-h");
+      const track = sec?.querySelector(".exp-h-track");
+      if (!sec || !track) return;
+      const pad = () => window.innerWidth * 0.06;
+      const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
+      gsap.fromTo(
+        track,
+        { x: () => pad() },
+        {
+          x: () => -(dist() + pad()),
+          ease: "none",
+          force3D: true,
+          scrollTrigger: {
+            trigger: sec,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+    });
+    const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 400);
+
     if (!isMobile()) {
       document.querySelectorAll("[data-tilt]").forEach((card) => {
         const onMove = (e) => {
@@ -159,6 +186,8 @@ export function usePortfolioEffects(ready) {
       window.removeEventListener("scroll", onProgress);
       if (parallaxHandler) window.removeEventListener("scroll", parallaxHandler);
       bar.remove();
+      clearTimeout(refreshTimer);
+      mm.revert();
       revealObserver.disconnect();
       cleanups.forEach((fn) => fn());
       gsap.ticker.remove(tick);

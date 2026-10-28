@@ -1,6 +1,5 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import "./Contact.css"
 
 export default function Contact() {
   const [sending, setSending] = useState(false);
@@ -32,11 +31,13 @@ export default function Contact() {
         {[0, 1].map((n) => (<span key={n}>CONTACT • CONTACT • CONTACT • CONTACT •&nbsp;</span>))}
       </div>
       <div className="container">
+        <div className="section-header animate-up">
+          <span className="section-tag">Get In Touch</span>
+          <h2 className="section-title">Let's <em>Connect</em></h2>
+          <p className="section-sub">Have a project in mind? I'd love to hear about it. Send me a message and let's make something incredible together.</p>
+        </div>
         <div className="contact-inner">
           <div className="contact-content animate-left">
-            <span className="section-tag">Get In Touch</span>
-            <h2 className="section-title">Let's Build Something <em>Amazing</em></h2>
-            <p>Have a project in mind? I'd love to hear about it. Send me a message and let's make something incredible together.</p>
             <div className="contact-info">
               <a href="mailto:malviyatashu@gmail.com" className="contact-link"><span className="c-icon">✉</span>malviyatashu@gmail.com</a>
               <a href="#" className="contact-link"><span className="c-icon">📍</span>Bhopal, India</a>

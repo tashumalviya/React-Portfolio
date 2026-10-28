@@ -1,4 +1,3 @@
-import "./Timeline.css"
 import sirtLogo from "../assets/sirt-logo.gif";
 import schoolLogo from "../assets/school-logo.png";
 import internpeLogo from "../assets/internpe-logo.png"
@@ -41,6 +40,50 @@ export function TimelineSection({ id, lineId, tag, title, titleEm, subtitle, ite
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function ExperienceSection({ id, tag, title, titleEm, subtitle, items }) {
+  const label = `${tag.toUpperCase()} • `.repeat(4);
+  return (
+    <section className="exp-h" id={id}>
+      <div className="bg-marquee bg-marquee--slow" style={{ top: "8%" }} aria-hidden="true">
+        {[0, 1].map((n) => (<span key={n}>{label}&nbsp;</span>))}
+      </div>
+      <div className="exp-h-pin">
+        <div className="container">
+          <div className="section-header animate-up">
+            <span className="section-tag">{tag}</span>
+            <h2 className="section-title">{title} <em>{titleEm}</em></h2>
+            <p className="section-sub">{subtitle}</p>
+          </div>
+        </div>
+        <div className="exp-h-viewport">
+          <div className="exp-h-track">
+            {items.map((item, i) => (
+              <article className="exp-card" key={i} data-tilt>
+                <div className="exp-card-top">
+                  <span className="exp-index">{String(i + 1).padStart(2, "0")}</span>
+                  {item.logo && (
+                    <img className="exp-logo" src={LOGOS[item.logo]} alt={`${item.company} logo`} loading="lazy" />
+                  )}
+                </div>
+                <span className="tl-date">{item.date}</span>
+                <h3>{item.title}</h3>
+                {item.company && <span className="tl-company">{item.company}</span>}
+                <p>{item.desc}</p>
+                {item.skills && (
+                  <div className="exp-skills">
+                    {item.skills.map((s) => (<span key={s} className="tag">{s}</span>))}
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+        <div className="exp-h-progress" aria-hidden="true"><span></span></div>
       </div>
     </section>
   );

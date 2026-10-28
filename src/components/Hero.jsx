@@ -1,6 +1,5 @@
 import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
-import './Hero.css'
 
 const KeyboardScene = lazy(() => import("./KeyboardScene.jsx"));
 
