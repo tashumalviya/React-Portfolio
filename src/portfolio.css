@@ -1632,20 +1632,25 @@ img { max-width: 100%; display: block; }
   position: relative;
   overflow: hidden;
   background: var(--white);
-  padding: 120px 0;
+  padding: 100px 0 40px;
+  /* fills one screen so GSAP can pin it while the cards slide */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .exp-h .container,
 .exp-h-viewport {
   position: relative;
   z-index: 1;
 }
-.exp-h .section-header { margin-bottom: 3.5rem; }
+.exp-h .section-header { margin-bottom: 2.5rem; }
 .exp-h-track {
   display: flex;
   align-items: flex-start;
   gap: 2rem;
   width: max-content;
-  padding: 0 6vw 110px;
+  padding: 0 6vw 30px;
   will-change: transform;
 }
 .exp-card {
@@ -1694,12 +1699,57 @@ img { max-width: 100%; display: block; }
 }
 .exp-skills { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.1rem; }
 .exp-skills .tag { padding: 5px 12px; font-size: 0.74rem; }
+/* scroll progress bar at the bottom of the pinned section */
+.exp-h-progress {
+  position: absolute;
+  left: 6vw; right: 6vw; bottom: 28px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  z-index: 2;
+}
+.exp-h-progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #4F8CFF, #8B5CF6, #5EEAD4);
+  transform: scaleX(0);
+  transform-origin: left;
+}
 @media (max-width: 768px) {
-  .exp-h { padding: 80px 0; }
+  .exp-h { padding: 80px 0; min-height: 0; display: block; }
+  .exp-h-progress { display: none; }
   .exp-h-viewport { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
   .exp-h-track { padding: 0 1.2rem 50px; gap: 1rem; }
   .exp-card { width: 82vw; scroll-snap-align: center; }
   .exp-card:nth-child(even) { margin-top: 40px; }
+}
+
+/* --- Pinned experience: everything must fit inside ONE screen (sizes scale with viewport height) --- */
+@media (min-width: 769px) {
+  .exp-h {
+    height: 100vh;
+    height: 100svh;
+    min-height: 0;
+    padding: clamp(68px, 11vh, 100px) 0 clamp(40px, 6vh, 60px);
+  }
+  .exp-h .section-header { margin-bottom: clamp(0.6rem, 2.6vh, 2rem); }
+  .exp-h .section-title { font-size: clamp(1.7rem, 5.4vh, 3rem); margin-bottom: 0.3rem; }
+  .exp-h .section-sub { font-size: clamp(0.78rem, 1.9vh, 0.95rem); }
+  .exp-h-track { padding-bottom: 0; gap: 1.6rem; }
+  .exp-card {
+    width: clamp(440px, 44vw, 560px);
+    padding: clamp(0.9rem, 2.4vh, 1.5rem) 1.6rem;
+  }
+  .exp-card:nth-child(even) { margin-top: clamp(24px, 6vh, 64px); }
+  .exp-card-top { margin-bottom: clamp(0.4rem, 1.4vh, 0.9rem); }
+  .exp-index { font-size: clamp(1.6rem, 4.4vh, 2.4rem); }
+  .exp-logo { width: clamp(34px, 5vh, 46px); height: clamp(34px, 5vh, 46px); }
+  .exp-card h3 { font-size: clamp(1.1rem, 2.8vh, 1.4rem); margin-top: 0.3rem; }
+  .exp-card .tl-company { margin-bottom: clamp(0.4rem, 1.2vh, 0.8rem); }
+  .exp-card p { font-size: clamp(0.76rem, 1.85vh, 0.88rem); line-height: 1.55; }
+  .exp-skills { margin-top: clamp(0.5rem, 1.6vh, 1rem); gap: 0.35rem; }
+  .exp-skills .tag { padding: 4px 10px; font-size: 0.7rem; }
+  .exp-h-progress { bottom: clamp(16px, 3.5vh, 30px); }
 }
 
 /* ============================================================
@@ -1867,4 +1917,208 @@ img { max-width: 100%; display: block; }
 @media (max-width: 520px) {
   .ft-cols { flex-direction: column; gap: 1.8rem; }
   .ft-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+}
+
+/* PaperImg.css
+ * Premium floating paper/polaroid photo animation.
+ * Pure CSS — GPU-friendly transform + opacity only.
+ */
+
+.paper-img-stage {
+  width: 100%;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.paper-img-float {
+  position: relative;
+  width: clamp(220px, 28vw, 340px);
+  aspect-ratio: 4 / 5;
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: paper-float 9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.paper-img-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  padding: 12px 12px 44px;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.04),
+    0 10px 20px -8px rgba(0, 0, 0, 0.18),
+    0 30px 60px -20px rgba(0, 0, 0, 0.28);
+  transform-origin: 50% 60%;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  animation: paper-reveal 9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.paper-img-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.paper-img-gloss {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0) 65%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+  animation: paper-gloss 9s ease-in-out infinite;
+}
+
+.paper-img-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -6%;
+  width: 78%;
+  height: 26px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.12) 45%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  filter: blur(10px);
+  z-index: -1;
+  animation: paper-shadow 9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* Keyframes
+ * 0%    : off-position, tilted, small, translucent
+ * 18%   : glides toward center
+ * 32%   : arrives at center, unfolds
+ * 55%   : held (2s hold roughly 32%–55% of 9s)
+ * 78%   : gently returns
+ * 100%  : back to initial pose
+ */
+
+@keyframes paper-float {
+  0% {
+    transform: translate3d(-6%, 4%, 0) rotate(-6deg);
+  }
+  32% {
+    transform: translate3d(0, -1%, 0) rotate(0.5deg);
+  }
+  45% {
+    transform: translate3d(0.5%, -2%, 0) rotate(-0.3deg);
+  }
+  55% {
+    transform: translate3d(0, -1%, 0) rotate(0.4deg);
+  }
+  78% {
+    transform: translate3d(-3%, 2%, 0) rotate(-3deg);
+  }
+  100% {
+    transform: translate3d(-6%, 4%, 0) rotate(-6deg);
+  }
+}
+
+@keyframes paper-reveal {
+  0% {
+    transform: scale(0.82) rotateX(18deg) rotateY(-10deg) rotateZ(-2deg);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  18% {
+    opacity: 0.85;
+    filter: blur(1.5px);
+  }
+  32% {
+    transform: scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  45% {
+    transform: scale(1.015) rotateX(-1.2deg) rotateY(1.5deg) rotateZ(0.2deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  55% {
+    transform: scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+  78% {
+    transform: scale(0.92) rotateX(10deg) rotateY(-6deg) rotateZ(-1deg);
+    opacity: 0.9;
+    filter: blur(1px);
+  }
+  100% {
+    transform: scale(0.82) rotateX(18deg) rotateY(-10deg) rotateZ(-2deg);
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
+@keyframes paper-gloss {
+  0%, 100% { opacity: 0.25; transform: translateX(-8%); }
+  32%      { opacity: 0.75; transform: translateX(0%); }
+  55%      { opacity: 0.6;  transform: translateX(4%); }
+  78%      { opacity: 0.35; transform: translateX(-4%); }
+}
+
+@keyframes paper-shadow {
+  0%, 100% {
+    opacity: 0.25;
+    transform: translateX(-50%) scale(0.7);
+    filter: blur(14px);
+  }
+  32%, 55% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+    filter: blur(10px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .paper-img-stage {
+    min-height: 420px;
+    padding: 1rem;
+  }
+  .paper-img-float {
+    width: clamp(200px, 60vw, 280px);
+  }
+  .paper-img-card {
+    border-radius: 14px;
+    padding: 10px 10px 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .paper-img-float,
+  .paper-img-card,
+  .paper-img-gloss,
+  .paper-img-shadow {
+    animation: none;
+  }
+  .paper-img-card {
+    transform: none;
+    opacity: 1;
+  }
 }

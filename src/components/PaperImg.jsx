@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import myPhoto from "../assets/myphoto.jpg";
-import "./PaperImg.css";
 
 const PaperImg = () => {
   return (

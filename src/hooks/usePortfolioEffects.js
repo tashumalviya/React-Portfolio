@@ -68,14 +68,18 @@ export function usePortfolioEffects(ready) {
       cleanups.push(() => { window.removeEventListener("scroll", onScroll); tlObserver.disconnect(); });
     });
 
-       // Experience: cards drift horizontally with scroll (no pin, smooth scrub) — desktop only
+    // Experience: section PINS to the screen while cards slide horizontally.
+    // Page only moves on to the next section once the last card is fully visible. (desktop only)
     const mm = gsap.matchMedia();
     mm.add("(min-width: 769px)", () => {
       const sec = document.querySelector(".exp-h");
       const track = sec?.querySelector(".exp-h-track");
+      const bar = sec?.querySelector(".exp-h-progress span");
       if (!sec || !track) return;
       const pad = () => window.innerWidth * 0.06;
       const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
+      const travel = () => dist() + pad() * 2; // total horizontal distance == total pinned scroll
+
       gsap.fromTo(
         track,
         { x: () => pad() },
@@ -85,10 +89,13 @@ export function usePortfolioEffects(ready) {
           force3D: true,
           scrollTrigger: {
             trigger: sec,
-            start: "top bottom",
-            end: "bottom top",
+            start: "top top",
+            end: () => "+=" + travel(),
+            pin: true,
             scrub: 1,
+            anticipatePin: 1,
             invalidateOnRefresh: true,
+            onUpdate: (self) => { if (bar) bar.style.transform = `scaleX(${self.progress})`; },
           },
         }
       );

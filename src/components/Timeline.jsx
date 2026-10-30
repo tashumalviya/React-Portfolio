@@ -103,7 +103,7 @@ export const EXPERIENCE_ITEMS = [
 
 export const EDUCATION_ITEMS = [
   { side: "tl-left", logo: "sirt", date: "2023 — Present", title: "Bachelor of Technology",
-    subTitle: "B.Tech, Computer Science & Engineering", grade: "Grade: 7.5 CGPA (5th Semester)",
+    subTitle: "B.Tech, Computer Science & Engineering", grade: "Grade: 7.78 CGPA (5th Semester)",
     desc: "Pursuing a Bachelor of Technology (B.Tech) in Computer Science & Engineering from Sagar Institute of Research & Technology, Bhopal. Building strong knowledge in programming, data structures and algorithms, database management systems, web development, and software engineering. Actively participating in workshops, coding activities, and technical projects to strengthen practical experience, problem-solving abilities, and professional development. Continuously enhancing technical and analytical skills to build a strong foundation for a career in software and technology." },
   { side: "tl-right", logo: "school", date: "2023", title: "M.P Board Class XII",
     subTitle: "School For Excellence , Dewas M.P", grade: "Grade - 85.6%",
