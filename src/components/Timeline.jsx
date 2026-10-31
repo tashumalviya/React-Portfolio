@@ -3,8 +3,9 @@ import schoolLogo from "../assets/school-logo.png";
 import internpeLogo from "../assets/internpe-logo.png"
 import yhillsLogo from "../assets/yhills-logo.png"
 import codesoftLogo from "../assets/codesoft-logo.png"
+import alphawizzLogo from "../assets/alphawizz.jpg"
 
-const LOGOS = { sirt: sirtLogo, school: schoolLogo , internpe: internpeLogo , yhills: yhillsLogo, codesoft: codesoftLogo};
+const LOGOS = { sirt: sirtLogo, school: schoolLogo , internpe: internpeLogo , yhills: yhillsLogo, codesoft: codesoftLogo , alphawizz: alphawizzLogo};
 
 export function TimelineSection({ id, lineId, tag, title, titleEm, subtitle, items }) {
   return (
@@ -90,15 +91,42 @@ export function ExperienceSection({ id, tag, title, titleEm, subtitle, items }) 
 }
 
 export const EXPERIENCE_ITEMS = [
-  { side: "tl-left", logo: "internpe", date: "Nov 2025 - Dec 2025 • Virtual Internship", title: "Web Development Intern", company: "InternPe",
-    desc: "Completed a project-based internship focused on front-end web development using HTML, CSS, and JavaScript. Built responsive and user-friendly web pages, implemented interactive UI features, and enhanced website usability through practical assignments and real-world development tasks. Strengthened problem-solving abilities and gained experience in writing clean and maintainable code.",
-    skills: ["HTML", "CSS", "JavaScript", "Responsive Design", "UI Development", "Frontend Development"] },
-  { side: "tl-right", logo: "yhills", date: "Oct 2024 - Nov 2024 • Virtual Internship", title: "Java Programming Intern", company: "YHills Edutech Pvt. Ltd.",
-    desc: "Completed a comprehensive Java Programming internship, gaining hands-on experience in core Java and object-oriented programming concepts. Built practical applications, improved debugging techniques, and enhanced analytical and problem-solving skills through project-based learning and coding assignments.",
-    skills: ["Java", "OOPs", "Problem Solving", "Debugging", "Project Managment"] },
-  { side: "tl-left", logo: "codesoft", date: "Nov 2024 - Dec 2024 • Virtual Internship", title: "C++ Programming Intern", company: "CodSoft",
-    desc: "Completed a 4-week virtual internship in C++ programming, where I developed projects and strengthened my understanding of object-oriented programming, problem-solving, and algorithm design through hands-on tasks and assignments.",
-    skills: ["C++", "OOPs", "Algorithms", "Problem Solving", "Project Development"] },
+{
+    side: "tl-left",
+    logo: "alphawizz",
+    date: "Aug 2026 - Oct 2026 • Internship",
+    title: "Frontend Developer Intern",
+    company: "Alphawizz Technology, Indore",
+    desc: "Worked on 8+ frontend projects using React.js, JavaScript, and DOM manipulation. Developed responsive and interactive user interfaces, implemented dynamic UI functionality, and created reusable components to improve user experience and application usability. Gained practical experience in frontend development and building user-focused web applications.",
+    skills: ["React.js", "JavaScript", "DOM Manipulation", "Responsive Design", "UI Development", "Component Development" ]
+  },
+  {
+    side: "tl-right",
+    logo: "internpe",
+    date: "Nov 2025 - Dec 2025 • Virtual Internship",
+    title: "Web Development Intern",
+    company: "InternPe",
+    desc: "Developed 5+ responsive web pages using HTML, CSS, and JavaScript. Implemented 5+ interactive UI components and completed multiple frontend development tasks while maintaining responsive layouts and cross-browser compatibility. Strengthened practical knowledge of frontend development and website usability.",
+    skills: ["HTML", "CSS", "JavaScript", "Responsive Design", "UI Development", "Frontend Development" ]
+  },
+  {
+    side: "tl-left",
+    logo: "yhills",
+    date: "Oct 2024 - Nov 2024 • Virtual Internship",
+    title: "Java Programming Intern",
+    company: "YHills Edutech Pvt. Ltd.",
+    desc: "Developed 10+ Java programming solutions using Core Java, OOP concepts, and data structures. Completed 20+ coding assignments and debugging challenges, applying object-oriented principles to write clean, reusable, and maintainable code. Improved analytical thinking and problem-solving skills through practical coding exercises.",
+    skills: ["Core Java", "OOP", "Data Structures", "Problem Solving", "Debugging", "Code Optimization" ]
+  },
+  {
+    side: "tl-right",
+    logo: "codesoft",
+    date: "Nov 2024 - Dec 2024 • Virtual Internship",
+    title: "C++ Programming Intern",
+    company: "CodSoft",
+    desc: "Completed a 4-week virtual internship focused on C++ programming. Worked on practical coding tasks and projects involving object-oriented programming, algorithms, and problem-solving. Strengthened programming fundamentals and gained hands-on experience in developing structured C++ solutions.",
+    skills: [ "C++", "OOP", "Algorithms", "Problem Solving", "Programming Fundamentals", "Project Development"]
+  }
 ];
 
 export const EDUCATION_ITEMS = [

@@ -1,8 +1,19 @@
 import portfolioImg from "../assets/MacOS-portfolio.png";
 import snapdishImg from "../assets/snapdish.png";
 import teamSyncImg from "../assets/teamsync.png";
+import herShieldImg from "../assets/hershield.jpg";
 
 const PROJECTS = [
+  {
+    image: herShieldImg,
+    tags: ["React.js", "Vite", "JavaScript", "CSS", "Node.js", "Express.js", "MySQL", "JWT Authentication"],
+    title: "HerShield - AI-Enabled Women Safety App",
+    desc: "An AI-enabled Women Safety Application designed to enhance personal security. Features include SOS emergency alerts, live location tracking, emergency contact management, OTP-based authentication, AI-powered chatbot support, nearby police station information, and emergency notifications. Built using React.js, Node.js, Express.js, and MySQL.",
+    wide: false,
+    dark: false,
+    live: "https://her-shield-ee6w.vercel.app",
+    github: "https://github.com/tashumalviya/HerShield",
+  },
 
   {
     image: teamSyncImg,
@@ -15,7 +26,7 @@ const PROJECTS = [
     github: "https://github.com/tashumalviya/Team_Sync---Frontend-Project",
   },
 
- {
+  {
     image: snapdishImg,
     tags: ["React", "Vite", "Tailwind CSS", "Responsive UI", "Recipe App"],
     title: "SnapDish — Recipe Sharing Platform",
@@ -35,10 +46,6 @@ const PROJECTS = [
     github: "https://github.com/tashumalviya/React-MacOS-Portfolio",
   },
 
- 
-
-  { bg: "#F8F4E1", icon: "🤖", tags: ["Python", "OpenAI", "React"], title: "AI Writing Companion", desc: "An AI-powered writing assistant with voice input, real-time suggestions, and context-aware editing capabilities.", wide: false, dark: false },
-  { bg: "#2B2B2B", icon: "🌍", tags: ["Three.js", "WebGL", "GLSL"], title: "Globe — 3D Data Visualization", desc: "An immersive 3D globe visualization showing global data flows, network connections, and geographic insights in real-time using WebGL shaders.", wide: true, dark: true },
 ];
 
 export default function Projects() {
