@@ -2,6 +2,7 @@ import portfolioImg from "../assets/MacOS-portfolio.png";
 import snapdishImg from "../assets/snapdish.png";
 import teamSyncImg from "../assets/teamsync.png";
 import herShieldImg from "../assets/hershield.jpg";
+import snitchImg from "../assets/snitch.jpg";
 
 const PROJECTS = [
   {
@@ -14,6 +15,17 @@ const PROJECTS = [
     live: "https://her-shield-ee6w.vercel.app",
     github: "https://github.com/tashumalviya/HerShield",
   },
+
+{
+  image: snitchImg,
+  tags: ["React.js", "JavaScript", "Node.js", "Express.js", "MySQL", "JWT Authentication"],
+  title: "Snitch - Buyer & Seller Marketplace",
+  desc: "A Buyer and Seller Marketplace platform that allows users to seamlessly switch between buyer and seller roles. Features include user authentication, product listing and management, product browsing, and marketplace functionality. Built to provide a smooth shopping and selling experience using React.js, Node.js, Express.js, and MySQL.",
+  wide: false,
+  dark: false,
+  live: "https://snitch-gold.vercel.app/",
+  github: "https://github.com/tashumalviya/Snitch",
+},
 
   {
     image: teamSyncImg,
