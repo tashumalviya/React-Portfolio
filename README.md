@@ -73,6 +73,3 @@ npm run build
 
 If you found this project helpful, please consider giving it a **⭐ Star** on GitHub.
 
----
-
-Made with ❤️ using React & Vite.
