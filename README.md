@@ -4,6 +4,10 @@
 
 A modern, responsive developer portfolio built with **React**, **Vite**, and **Tailwind CSS**. The portfolio features a macOS-inspired interface, smooth animations, interactive components, and a clean user experience to showcase projects, skills, and achievements.
 
+## 🌐 Live Demo
+
+**Live Website:** * https://react-portfolio-pi-murex-85.vercel.app/ *
+
 ## ✨ Features
 
 * 💻 Modern macOS-inspired UI
@@ -64,10 +68,6 @@ npm run dev
 ```bash
 npm run build
 ```
-
-## 🌐 Live Demo
-
-**Live Website:** * https://react-portfolio-pi-murex-85.vercel.app/ *
 
 ## ⭐ Support
 
